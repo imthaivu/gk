@@ -1,0 +1,23 @@
+{
+    "name": "cafe-menu",
+    "version": "1.0.0",
+    "description": "Ung dung quan ly menu cafe bang Express + EJS + DynamoDB + S3",
+    "main": "app.js",
+    "scripts": {
+        "start": "nodemon app.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "dependencies": {
+        "aws-sdk": "^2.1693.0",
+        "body-parser": "^2.2.2",
+        "dotenv": "^17.3.1",
+        "ejs": "^5.0.1",
+        "express": "^5.2.1",
+        "express-session": "^1.19.0",
+        "multer": "^2.1.1",
+        "nodemon": "^3.1.14"
+    }
+}

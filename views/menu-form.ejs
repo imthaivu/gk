@@ -1,0 +1,61 @@
+<div class="card">
+    <div class="card-body">
+        <% if (errors && errors.length) { %>
+            <div class="alert alert-danger">
+                <ul>
+                    <% errors.forEach(e => { %>
+                        <li>
+                            <%= e %>
+                        </li>
+                        <% }) %>
+                </ul>
+            </div>
+            <% } %>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Ten mon</label>
+                        <input class="form-control" type="text" name="itemName" value="<%= item.itemName || '' %>" <%= mode==='create' ? '' : 'readonly' %> required />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Loai mon</label>
+                        <select class="form-select" name="category" <%= mode==='create' ? '' : 'disabled' %> required>
+          <option value="">-- Chon loai --</option>
+          <% (formMeta.categories || []).forEach(cat => { %>
+            <option value="<%= cat %>" <%= item.category === cat ? 'selected' : '' %>><%= cat %></option>
+          <% }) %>
+        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Gia goc (VND)</label>
+                        <input class="form-control" type="number" min="0" step="1000" name="price" value="<%= item.price || '' %>" <%= mode==='detail' ? 'readonly' : '' %> required />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Giam gia (%)</label>
+                        <input class="form-control" type="number" min="0" max="50" step="0.1" name="discountPercent" value="<%= item.discountPercent || 0 %>" <%= mode==='detail' ? 'readonly' : '' %> required />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Trang thai</label>
+                        <select class="form-select" name="isAvailable" <%= mode==='detail' ? 'disabled' : '' %>>
+          <option value="true" <%= item.isAvailable ? 'selected' : '' %>>Con ban</option>
+          <option value="false" <%= !item.isAvailable ? 'selected' : '' %>>Het mon</option>
+        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Hinh anh</label>
+                        <input class="form-control" type="file" name="image" accept="image/*" <%= mode==='create' ? 'required' : '' %> <%= mode === 'detail' ? 'disabled' : '' %> />
+                            <% if (item.imageUrl) { %>
+                                <div class="mt-2">
+                                    <img src="<%= item.imageUrl %>" alt="<%= item.itemName %>" class="img-thumbnail" style="max-height: 180px;" />
+                                </div>
+                                <% } %>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-end justify-content-end gap-2">
+                        <% if (mode !== 'detail') { %>
+                            <button type="submit" class="btn btn-primary"><%= mode === 'create' ? 'Luu mon' : 'Cap nhat' %></button>
+                            <% } %>
+                                <a class="btn btn-secondary" href="/menu">Quay lai danh sach</a>
+                    </div>
+                </div>
+    </div>
+</div>
